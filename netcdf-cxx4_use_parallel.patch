@@ -1,0 +1,43 @@
+diff --git a/configure b/configure
+index 9e70fb9..aa0e0ce 100755
+--- a/configure
++++ b/configure
+@@ -801,6 +801,7 @@ enable_extra_tests
+ enable_large_file_tests
+ enable_benchmarks
+ with_temp_large
++enable_parallel
+ enable_doxygen
+ enable_shared
+ enable_static
+@@ -3309,6 +3310,9 @@ cat >>confdefs.h <<_ACEOF
+ #define TEMP_LARGE "$TEMP_LARGE"
+ _ACEOF
+ 
++if test "${enable_parallel+set}" = set; then :
++  enableval=$enable_parallel;
++fi
+ 
+ 
+ ####
+@@ -17050,7 +17054,7 @@ if test "$ac_res" != no; then :
+ 
+ fi
+ 
+-for ac_func in nc_def_opaque nccreate nc_set_log_level oc_open nc_use_parallel_enabled
++for ac_func in nc_def_opaque nccreate nc_set_log_level oc_open
+ do :
+   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+@@ -17117,9 +17121,10 @@ else
+   BUILD_DAP_FALSE=
+ fi
+ 
+- if test "x$ac_cv_func_nc_use_parallel_enabled" = xyes; then
++ if test "x$enable_parallel" = xyes; then
+   BUILD_PARALLEL_TRUE=
+   BUILD_PARALLEL_FALSE='#'
++  echo "enable parallel"
+ else
+   BUILD_PARALLEL_TRUE='#'
+   BUILD_PARALLEL_FALSE=
