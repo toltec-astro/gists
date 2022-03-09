@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ !$1 ]]; then
+if [[ ! $1 ]]; then
     echo Usage: js9_config.sh rootdir
     exit 0
 fi
